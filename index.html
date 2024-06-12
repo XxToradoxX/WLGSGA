@@ -7,13 +7,24 @@
 </head>
 <body>
 <div id="root">
-{{message}}
+    {{ message }}
+    <br/>
+    <button :value="age" @click="wtf" style="height: 30vh;width: 30vw;margin-left:auto;font-size: 30px">{{ age }}</button>
 </div>
 <script>
     var app = new Vue({
         el: "#root",
         data: {
-            message:"hello"
+            message: "hello",
+            age: 0
+        },
+        methods: {
+            wtf() {
+                setInterval(()=>{
+                    this.age+=114514
+                    console.log(this)
+                },100)
+            }
         }
     })
 </script>
