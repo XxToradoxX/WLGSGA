@@ -6,10 +6,14 @@
     <script src="https://cdn.staticfile.net/vue/2.2.2/vue.min.js"></script>
 </head>
 <body>
+<div id="root">
+{{message}}
+</div>
 <script>
-    new Vue({
-        data:{
-
+    var app = new Vue({
+        el: "#root",
+        data: {
+            message:"hello"
         }
     })
 </script>
