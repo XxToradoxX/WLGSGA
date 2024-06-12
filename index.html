@@ -9,21 +9,27 @@
 <div id="root">
     {{ message }}
     <br/>
-    <button :value="age" @click="wtf" style="height: 30vh;width: 30vw;margin-left:auto;font-size: 30px">{{ age }}</button>
+    {{ family }}
+    <br/>
+    <button :value="age" @click="wtf" style="height: 30vh;width: 30vw;margin-left:auto;font-size: 30px">{{
+            age
+        }}
+    </button>
 </div>
 <script>
     var app = new Vue({
         el: "#root",
         data: {
             message: "hello",
-            age: 0
+            age: 0,
+            family: [1, 2, 3]
         },
         methods: {
             wtf() {
-                setInterval(()=>{
-                    this.age+=114514
+                setInterval(() => {
+                    this.age += 114514
                     console.log(this)
-                },100)
+                }, 100)
             }
         }
     })
