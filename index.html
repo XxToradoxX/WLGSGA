@@ -11,25 +11,40 @@
     <br/>
     {{ family }}
     <br/>
-    <button :value="age" @click="wtf" style="height: 30vh;width: 30vw;margin-left:auto;font-size: 30px">{{
-            age
-        }}
+    <button :value="age" @click="wtf" style="height: 30vh;width: 30vw;margin-left:auto;font-size: 30px">睡觉+{{ age }}
     </button>
+    <input type="button" @click="eat" style="width: 50vw;height:10vh;display: inline-block;margin-top: 50px">
+    <div :style="ss" @mouseover="aaa"></div>
 </div>
 <script>
     var app = new Vue({
         el: "#root",
         data: {
+    //         ss:{
+    //             background-color: "red",
+    //             width: "200px",
+    //             height: "200px",
+    //             position: "absolute",
+    // ,           top: "500px",
+    //             left: "200px"
+    //         },
             message: "hello",
             age: 0,
             family: [1, 2, 3]
         },
         methods: {
             wtf() {
+                console.log("睡觉")
                 setInterval(() => {
-                    this.age += 114514
+                    this.age += 1
                     console.log(this)
                 }, 100)
+            },
+            eat: function () {
+                alert("恰饭")
+            },
+            aaa() {
+
             }
         }
     })
