@@ -13,7 +13,7 @@
             {{ it }} --- {{ key }}
         </li>
     </ul>
-
+    <button @click="wtf">切换</button>
     <h2>v-bind 示例 单向绑定</h2>
     <img :src="imageSrc" width="300px">
 
@@ -30,6 +30,15 @@
             list: ["张三", "李四", "王五"],
             imageSrc: 'img/img2.png',
             message: ''
+        },
+        methods: {
+            wtf() {
+                if (this.imageSrc == "img/img2.png") {
+                    this.imageSrc = "img/img.png"
+                } else {
+                    this.imageSrc = "img/img2.png"
+                }
+            }
         }
     })
 </script>
