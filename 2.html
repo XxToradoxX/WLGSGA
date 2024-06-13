@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <!--        空格不能少 in 左右两边的-->
+        <li v-for="(it,key) in list">
+            {{ it }} --- {{ key }}
+        </li>
+    </ul>
+
+    <h2>v-bind 示例 单向绑定</h2>
+    <img :src="imageSrc" width="300px">
+
+    <h2>v-model 示例 双向绑定</h2>
+    <input type="text" v-model="message" placeholder="Enter a message">
+
+    <p>You typed: {{ message }}</p>
+
+</div>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            list: ["张三", "李四", "王五"],
+            imageSrc: 'img/img2.png',
+            message: ''
+        }
+    })
+</script>
+</body>
+</html>
