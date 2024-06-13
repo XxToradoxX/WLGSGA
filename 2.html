@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="js/vue.js"></script>
+    <style>
+        .red {
+            width: 10vw;
+            height: 10vw;
+            background-color: red;
+        }
+
+        .green {
+            width: 10vw;
+            height: 10vw;
+            background-color: green;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
@@ -22,12 +35,14 @@
 
     <p>You typed: {{ message }}</p>
 
+    <div :class="{red:isActive,green:!isActive}" @click="change"></div>
 </div>
 <script>
 
     var app = new Vue({
         el: "#app",
         data: {
+            isActive: "True",
             list: ["张三", "李四", "王五"],
             imageSrc: 'img/img2.png',
             message: ''
@@ -39,6 +54,9 @@
                 } else {
                     this.imageSrc = "img/img2.png"
                 }
+            },
+            change() {
+                this.isActive = !this.isActive
             }
         }
     })
