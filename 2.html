@@ -19,7 +19,29 @@
     </style>
 </head>
 <body>
-<div id="app">11117</div>
+<div id="app">
+    <ul>
+        <!--        空格不能少 in 左右两边的-->
+        <li v-for="(it,key) in list">
+            {{ it }} --- {{ key }}
+        </li>
+    </ul>
+    <button @click="wtf">切换</button>
+    <h2>v-bind 示例 单向绑定</h2>
+    <img :src="imageSrc" width="300px">
+
+    <h2>v-model 示例 双向绑定</h2>
+    <input type="text" v-model="message" placeholder="Enter a message">
+
+    <p>You typed: {{ message }}</p>
+
+    <div :class="{red:isActive,green:!isActive}" @click="change"></div>
+
+    <div>
+        <input type="text" placeholder="输入用户名" @keydown.enter="nextElement($event)">
+        <input type="text" placeholder="输入密码">
+    </div>
+</div>
 <script>
 
     var app = new Vue({
@@ -40,6 +62,10 @@
             },
             change() {
                 this.isActive = !this.isActive
+            },
+            nextElement(e) {
+                alert("点击操作执行")
+                console.log(e.target.nextElement())
             }
         }
     })
