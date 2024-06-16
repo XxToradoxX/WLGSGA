@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <component-button></component-button>
+    <component-button></component-button>
+    <component-button></component-button>
+</div>
+<script>
+    //定义component一定要在Vue实例前面,不然找不到
+    Vue.component('component-button', {
+        template: '<button @click="num+=1">当前点击了{{num}}次</button>',
+        data() {
+            return {
+                num: 0
+            }
+        }
+    });
+    var app = new Vue({
+        el: "#app",
+        data: {
+            dd: "test"
+        }
+    })
+    // vue实例的时候定义data属性既可以是一个对象，也可以是一个函数
+    // 组件中定义data属性，只能是一个函数
+    // 根实例对象data可以是对象也可以是函数（根实例是单例），不会产生数据污染情况
+    // 组件实例对象data必须为函数，目的是为了防止多个组件实例对象之间共用一个data，产生数据污染。采用函数的形式，initData时会将其作为工厂函数都会返回全新data对象
+</script>
+</body>
+</html>
