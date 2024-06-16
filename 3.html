@@ -10,6 +10,8 @@
     <component-button></component-button>
     <component-button></component-button>
     <component-button></component-button>
+    <input type="text" v-test="color" v-model="color">
+
 </div>
 <script>
     //定义component一定要在Vue实例前面,不然找不到
@@ -21,10 +23,24 @@
             }
         }
     });
+
     var app = new Vue({
         el: "#app",
         data: {
-            dd: "test"
+            dd: "test",
+            color:"orange"
+        },
+        directives: {
+            test:{
+                // 指令的定义
+                inserted: function (el, binding) {
+                    console.log(binding.value)
+                    // el为绑定元素，可以对其进行dom操作
+                    console.log(binding) // binding 一个对象，包含很多属性
+                    console.log(el)
+                    el.style.backgroundColor=binding.value
+                }
+            }
         }
     })
     // vue实例的时候定义data属性既可以是一个对象，也可以是一个函数
