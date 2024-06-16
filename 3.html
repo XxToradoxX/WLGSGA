@@ -10,7 +10,7 @@
     <component-button></component-button>
     <component-button></component-button>
     <component-button></component-button>
-    <input type="text" v-test="color" v-model="color">
+    <input type="text" v-test="color" v-red>
 
 </div>
 <script>
@@ -23,22 +23,26 @@
             }
         }
     });
-
+    Vue.directive('red', {
+        inserted: function (el) {
+            el.style.background = 'red';
+        }
+    });
     var app = new Vue({
         el: "#app",
         data: {
             dd: "test",
-            color:"orange"
+            color: "orange"
         },
         directives: {
-            test:{
+            test: {
                 // 指令的定义
                 inserted: function (el, binding) {
-                    console.log(binding.value)
                     // el为绑定元素，可以对其进行dom操作
-                    console.log(binding) // binding 一个对象，包含很多属性
+                    // binding 一个对象，包含很多属性
+                    console.log(binding.value)
                     console.log(el)
-                    el.style.backgroundColor=binding.value
+                    el.focus()
                 }
             }
         }
