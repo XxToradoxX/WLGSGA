@@ -38,11 +38,35 @@
             test: {
                 // 指令的定义
                 inserted: function (el, binding) {
-                    // el为绑定元素，可以对其进行dom操作
-                    // binding 一个对象，包含很多属性
-                    console.log(binding.value)
+                    console.log("----------------insert----------------")
+                    console.log(binding)
                     console.log(el)
-                    el.focus()
+                    // el.focus()
+                    console.log("--------------------------------")
+                },
+                bind: (el, binding) => {
+                    console.log("----------------Bind----------------")
+                    console.log(el)
+                    console.log(binding)
+                    console.log("--------------------------------")
+                },
+                update: (el, binding) => {
+                    console.log("----------------Update----------------")
+                    console.log(el)
+                    console.log(binding)
+                    console.log("--------------------------------")
+                },
+                componentUpdated: (el, binding) => {
+                    console.log("----------------componentUpdated----------------")
+                    console.log(el)
+                    console.log(binding)
+                    console.log("--------------------------------")
+                },
+                unbind:(el,binding)=>{
+                    console.log("----------------unbind----------------")
+                    console.log(el)
+                    console.log(binding)
+                    console.log("--------------------------------")
                 }
             }
         }
