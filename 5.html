@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Form</title>
+    <!-- 替换为 Vue.js 的 CDN 链接 -->
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <login :user.sync="user"></login>
+</div>
+<script>
+    let login = {
+        template: `
+          <form @submit.prevent="handleSubmit">
+          <input type="text" placeholder="输入用户名" v-model="username">
+          <br/>
+          <input type="password" placeholder="输入密码" v-model="password">
+          <br/>
+          <input type="submit" value="提交"/>
+          </form>
+        `,
+        props: ['user'],
+        data() {
+            return {
+                // 这里可以添加组件的本地数据
+            }
+        },
+        methods: {
+            handleSubmit() {
+                // 处理登录逻辑
+                console.log('Username:', this.user.username);
+                console.log('Password:', this.user.password);
+            }
+        },
+        watch: {
+            'user.username'(newVal) {
+                this.$emit('update:user', {...this.user, username: newVal});
+            },
+            'user.password'(newVal) {
+                this.$emit('update:user', {...this.user, password: newVal});
+            }
+        }
+    }
+    var app = new Vue({
+        el: '#app',
+        data: {
+            user: {
+                username: "",
+                password: ""
+            }
+        },
+        components:{
+            login
+        }
+    });
+</script>
+</body>
+</html>

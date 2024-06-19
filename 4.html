@@ -7,55 +7,30 @@
 </head>
 <body>
 <div id="app">
-    <login/>
+    <login :user="user"></login>
 </div>
 <script>
-    //定义component一定要在Vue实例前面,不然找不到
-    Vue.component('component-button', {
-        template: '<button @click="num+=1">当前点击了{{num}}次</button>',
-        data() {
-            return {
-                num: 0,
-            }
-        }
-    });
-    Vue.component('login', {
-        template: "<form>" +
-            "<input type='text' value='输入用户名'>" +
-            "<br/>" +
-            "<input type='password' placeholder='输入密码'>" +
-            "<br/>" +
-            "<input type='submit' value='提交' />" +
-            "</form>",
-        data() {
-            return {
-                num: 0,
-                name:"zjitc"
-            }
-        }
-    });
-    Vue.directive('red', {
-        inserted: function (el) {
-            el.style.background = 'red';
-        }
-    });
+    let login = {
+        template: `
+          <form>
+          <input type='text' placeholder='输入用户名' v-model:user.username>
+          <br/>
+          <input type='password' placeholder='输入密码' v-model:user.pswd>
+          <br/>
+          <input type='submit' value='提交' />
+          </form>
+        `,
+        props: ["user"]
+    }
     var app = new Vue({
-        // el: "#app",
         data: {
-            dd: "test",
-            color: "orange"
-        },
-        directives: {
-            test: {
-                // 指令的定义
-                inserted: function (el, binding) {
-                    // el为绑定元素，可以对其进行dom操作
-                    // binding 一个对象，包含很多属性
-                    console.log(binding.value)
-                    console.log(el)
-                    el.focus()
-                }
+            user:{
+                username:"",
+                pswd:""
             }
+        },
+        components: {
+            login
         }
     })
     app.$mount("#app")
