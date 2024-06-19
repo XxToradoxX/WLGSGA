@@ -8,31 +8,40 @@
 <body>
 <template id="item">
     <div>
-        <button @click="$emit('asa')">到来</button>
+        <button @click="$emit('asa', '银川')">{{arr}}</button>
     </div>
 </template>
 
 <div id="app">
-    <login @asa="find"></login>
+    <login @asa="find" :arr="arr"></login>
 </div>
 <script>
-    let login = {
+    Vue.component('login', {
         template: "#item",
-        // 用prop进行过度，将data内的数据传给组件内
-        props: ["user"],
-    }
+        props: {
+            arr: String
+        },
+        methods: {
+            emitASA() {
+                this.$emit('asa', '银川');
+            }
+        }
+    });
 
     const app = new Vue({
         el: '#app',
         data: {
             user: "admin",
+            arr: '666'
         },
         components: {
-            login,
+            login: Vue.component('login')
         },
         methods: {
             find(a) {
-                this.arr = "来到银川" + a
+                console.log(this)
+                console.log(a)
+                this.arr = "来到" + a;
             }
         }
     });
