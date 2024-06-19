@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/router.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <!-- 1. 传统传参方式 -->
+    <router-link to="/login?name=张三&age=25">查看咨询</router-link>
+    <!-- 2. restful 来传递 -->
+    <router-link to="/item/6/10">查看比赛</router-link>
+    <router-view></router-view>
+</div>
+
+<template id="login">
+    <div>
+        <h1>edg.uzi登陆成功</h1>
+        <h2>本台记者{{ name }}年龄{{ age }}</h2>
+    </div>
+</template>
+
+<template id="item">
+    <div>
+        <h1>明天晚上打jdg</h1>
+        <!--使用变量-->
+        <h2>{{ mouth }}月 {{ day }}日</h2>
+    </div>
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- 1. 引入路由 vue-router v3.x -->
+<script src="https://unpkg.com/vue-router@3/dist/vue-router.js"></script>
+
+<script>
+    let login = {
+        template: "#login",
+        data() {
+            return {
+                name: '',
+                age: '',
+            };
+        },
+        created() {
+            // 把传进来的参数赋值给data内的变量
+            this.age = this.$route.query.age
+            this.name = this.$route.query.name
+        },
+    };
+    let item = {
+        template: "#item",
+        data() {
+            return {
+                mouth: '',
+                day: '',
+            };
+        },
+        created() {
+            this.mouth = this.$route.params.mouth;
+            this.day = this.$route.params.day;
+        },
+    };
+    const router = new VueRouter({
+        routes: [
+            {
+                path: "/",
+                redirect: "/login",
+            },
+            {
+                path: "/login",
+                component: login,
+            },
+            {
+                path: '/item/:mouth/:day',
+                component: item,
+            }
+        ]
+    });
+    const app = new Vue({
+        el: '#app',
+        // components: {
+        //     item,
+        //     login
+        // },
+        router: router,
+    })
+</script>
+</body>
+</html>

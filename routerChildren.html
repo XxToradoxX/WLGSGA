@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <router-view></router-view>
+</div>
+<template id="login">
+    <div>
+        <!-- 声明清楚外层和内层的路由 -->
+        <router-link to="/login/no">打的肯定不行</router-link>
+        <router-link to="/login/yes">宝刀未老</router-link>
+        <router-view></router-view>
+    </div>
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- 1. 引入路由 vue-router v3.x -->
+<script src="https://unpkg.com/vue-router@3/dist/vue-router.js"></script>
+
+<script>
+    let login = {
+        template: "#login",
+    };
+    const no = {
+        template: '<h1>一看年纪打了还上场</h1>',
+    };
+    const yes = {
+        template: '<h1>永远的神</h1>',
+    };
+    const router = new VueRouter({
+        routes: [
+            {
+                path: "/",
+                redirect: "/login",
+            },
+            {
+                path: "/login",
+                component: login,
+                // 创建子路由
+                children: [
+                    {path: 'no', component: no},
+                    {path: 'yes', component: yes}
+                ]
+            },
+        ]
+    });
+    const app = new Vue({
+        el: '#app',
+        router: router,
+    })
+</script>
+
+</body>
+</html>
