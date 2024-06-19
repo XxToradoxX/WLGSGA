@@ -7,15 +7,15 @@
 </head>
 <body>
 <div id="app">
-    <login :user="user"></login>
+    <login :user="username"></login>
 </div>
 <script>
     let login = {
         template: `
           <form>
-          <input type='text' placeholder='输入用户名' v-model:user.username>
+          <input type='text' placeholder='输入用户名'>
           <br/>
-          <input type='password' placeholder='输入密码' v-model:user.pswd>
+          <input type='password' placeholder='输入密码'>
           <br/>
           <input type='submit' value='提交' />
           </form>
@@ -23,11 +23,9 @@
         props: ["user"]
     }
     var app = new Vue({
+        // el: "#app",
         data: {
-            user:{
-                username:"",
-                pswd:""
-            }
+            username:"zhangsan"
         },
         components: {
             login
