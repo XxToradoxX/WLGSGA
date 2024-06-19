@@ -9,7 +9,7 @@
 <body>
 <div id="app">
     <!-- 4. 调用组件 -->
-    <item></item>
+    <login></login>
     <login></login>
 </div>
 <!-- 1.声明一个局部组件的模板  template 标签-->
@@ -19,8 +19,6 @@
     </div>
 </template>
 
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
     // 2. 定义一一个变量用于存放组件模板
     let login = {
@@ -28,10 +26,9 @@
     }
     const app = new Vue({
         el: '#app',
-        components:{
+        components: {
             // 3. 注册组件
-            login,
-            item: login,
+            login
         }
     });
 </script>

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="js/vue.js"/>
+    <script src="js/vue.js"></script>
 </head>
 <body>
 <template id="item">
     <div>
-        <button @click="$emit('asa', 0.1)">到来</button>
+        <button @click="$emit('asa')">到来</button>
     </div>
 </template>
 
@@ -21,13 +21,14 @@
         // 用prop进行过度，将data内的数据传给组件内
         props: ["user"],
     }
+
     const app = new Vue({
         el: '#app',
         data: {
             user: "admin",
         },
         components: {
-            item,
+            login,
         },
         methods: {
             find(a) {
