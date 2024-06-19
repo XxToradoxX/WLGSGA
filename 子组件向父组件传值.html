@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"/>
+</head>
+<body>
+<template id="item">
+    <div>
+        <button @click="$emit('asa', 0.1)">到来</button>
+    </div>
+</template>
+
+<div id="app">
+    <login @asa="find"></login>
+</div>
+<script>
+    let login = {
+        template: "#item",
+        // 用prop进行过度，将data内的数据传给组件内
+        props: ["user"],
+    }
+    const app = new Vue({
+        el: '#app',
+        data: {
+            user: "admin",
+        },
+        components: {
+            item,
+        },
+        methods: {
+            find(a) {
+                this.arr = "来到银川" + a
+            }
+        }
+    });
+</script>
+</body>
+</html>
