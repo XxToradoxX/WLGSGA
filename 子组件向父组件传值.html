@@ -8,26 +8,33 @@
 <body>
 <template id="item">
     <div>
-        <button @click="$emit('asa', '银川')">{{arr}}</button>
+        <!--        使用 $emit 来触发自定义事件，这些事件可以被父组件监听。-->
+        <!--        $emit(事件名字,参数)-->
+        <button @click="$emit('asa')">{{ arr }}</button>
     </div>
 </template>
 
 <div id="app">
-    <login @asa="find" :arr="arr"></login>
+    <login @asa="find('osaka')" :arr="arr"></login>
 </div>
 <script>
-    Vue.component('login', {
+    // Vue.component('login', {
+    //     template: "#item",
+    //     props: {
+    //         arr: String
+    //     },
+    //     methods: {
+    //         emitASA() {
+    //             this.$emit('asa', '银川');
+    //         }
+    //     }
+    // });
+    let login = {
         template: "#item",
         props: {
-            arr: String
-        },
-        methods: {
-            emitASA() {
-                this.$emit('asa', '银川');
-            }
+            arr: ""
         }
-    });
-
+    }
     const app = new Vue({
         el: '#app',
         data: {
@@ -35,7 +42,7 @@
             arr: '666'
         },
         components: {
-            login: Vue.component('login')
+            login
         },
         methods: {
             find(a) {
